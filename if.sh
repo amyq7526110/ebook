@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if  echo $1 | grep -q [^0-3]    ;then
+   if  echo $1 | grep -q [^0-3]    ;then
 
    echo "不是0-3" 
    
