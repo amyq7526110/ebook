@@ -22,3 +22,13 @@
 #    每句测试行,都以右小括号)结尾.
 #    每个条件块都以两个分号结尾;;.
 #    case 块的结束以 esac(case 的反向拼写)结尾.
+
+
+select
+select 结构是建立菜单的另一种工具,这种结构是从 ksh 中引入的.
+select variable [in list]
+do
+command...
+break
+done
+提示用户选择的内容比如放在变量列表中.注意:select 命令使用 PS3 提示符[默认为(#? )]但是可以修改 PS3.
