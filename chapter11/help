@@ -1,0 +1,6 @@
+#  help
+#  获得 shell 内建命令的一个小的使用总结.这与 whatis 命令比较象,但是 help 是内建命令.
+#  bash$ help exit
+#  exit: exit [n]
+#  Exit the shell with a status of N. If N is omitted, the exit status
+#  is that of the last command executed.

@@ -1,0 +1,68 @@
+#!/bin/bash
+
+   #  find 
+      # -exec Command \;
+
+      # 在每一个 find 匹配到的文件执行 COMMAND 命令. 命令序列以 ; 结束( ";" 是 转义符 以保证 shell 传递到 find 命令中的字符不会被解释为其他的特殊字符).
+
+      find ~/ -name "*.txt"
+
+
+      #  如果 COMMAND 中包含 {}, 那么 find
+      #+ 命令将会用所有匹配文件的路径名来替换 "{}" .
+
+      find ~/ -name "core*" -exec rm {} \;
+
+      # 从用户的 home 目录中删除所有的 core dump 文件.
+
+      find ~/ -mtime 1
+
+      #  列出最后一天修改的 
+
+      #+ 在家目录树的所有的文件
+
+      # mtime = last modification time of the target file
+
+      # ctime = last status changes time (via `chmod` or otherwise)
+
+      # atime = last access time 
+
+
+      Dir=/home/bozo/junk_files
+
+      find "$Dir" -type f -atime +5 -exec rm {} \;
+
+
+      # 大括号就是"find"命令用来替换目录的地方.
+      
+      # 删除至少 5 天内没被存取过的
+
+      #+$Dir 中的所有文件
+
+      #  ".type filetype". where
+
+      #  f = regular
+
+      #  d = directory,etc.
+
+      #  find 命令的man 页有完整的选项列表
+
+      find /etc -type f -exec grep '[0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*' {} \;
+
+      # 在/etc 目录中的文件找到所所有包含 IP 地址(xxx.xxx.xxx.xxx) 的文件.
+      # 可能会查找到一些多余的匹配. 我们如何去掉它们呢?
+
+      find /etc -type f  -exec cat '{}' \; | tr -c '.[:digit:]' '\n' | grep '^[^.][^.]*\.[^.][^.]*\.[^.][^.]*\.[^.][^.]*$' 
+
+      # [:digit:] 是一种字符类.is one of the character classes
+      #+ 关于字符类的介绍见 POSIX 1003.2 标准化文档.
+      
+      # Thanks, Stéphane Chazelas.
+    
+      # 注意: find 命令的 -exec 选项不应该与 shell 中的内建命令 exec 相混淆.
+
+
+
+
+
+

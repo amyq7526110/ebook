@@ -1,0 +1,2 @@
+bind
+bind 内建命令用来显示或修改 readline[5]的键绑定.

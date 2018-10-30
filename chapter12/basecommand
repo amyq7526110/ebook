@@ -1,0 +1,190 @@
+#!/bin/bash
+
+  echo -e "\033[36m 
+
+  cat.tac 
+    
+     cat, 是单词 concatenate的缩写，把文件的内容输出到
+     stdout， 当与重定向操作符( > 或 >> )结合使用时, 
+     一般都是用来将多个文件连接起来
+
+     # User of 'cat'
+
+     cat filename    #  打印出文件内容
+
+     cat file1 file2 file3 > file123
+
+     # 把三个文件连接到一个文件中
+
+  cat
+
+    -n 选项是为了在目标文件中的所有行前边插入行号. 
+
+    -b 选项 与 -n 选项一样, 区别是不对空行进行编号.
+
+    -v 选项可以使用 ^ 标记法 来 echo 出不可打印字符.
+
+    -s 选项可以把多个空行压缩成一个空行.
+
+    见 Example 12-25 和 Example 12-21
+
+    注意: 在一个 管道 中, 可能有一种把 stdin 重定向
+          到一个文件中的更有效的办法, 这
+          种方法比 cat 文件的方法更有效率.
+
+    cat filename | tr a-z A-Z 
+
+    tr a-z A-Z < filename     # 效果相同，但是处理更少
+
+                              #+ 并且连管道都省了 
+
+    tac 命令 ，就是cat的反转，将文件的结尾列出文件
+
+  rev 
+     
+    把每一行的内容反转，并输出到stdin 上这个命令与 tac 命令的效果是不同的, 因
+    为它并不反转行序, 而是把每行的内容反转.
+
+    bash$ cat file1.txt
+    This is line 1.
+    This is line 2.
+
+    bash$ tac file1.txt
+    This is line 2.
+    This is line 1.
+
+    bash$ rev file1.txt
+    .1 enil si sihT
+    .2 enil si sihT
+  
+  cp
+    
+    这是文件拷贝命令. cp file1 file2 把 file1 拷贝到 file2, 如果存在 file2 的话,那 file2 将被覆盖 (见 Example 12-6).
+
+    注意: 特别有用的选项就是 -a 归档选项(为了 copy 一个完整的目录树), 
+    -u 是更新选 项,和-r 与 -R 递归选项.
+
+    cp -u source_dir/* dest_dir
+
+    # "Synchronize" dest_dir to source_dir 把源目录"同步"到目标目录上,
+
+    #+ 也就是拷贝所有更新的文件和之前不存在的文件.
+
+  mv
+     这是文件移动命令. 它等价于 cp 与 rm 命令的组合. 它可以把多个文件移动到目录中,甚至将目录重命名. 想查看 mv 在脚本中使用的例子, 见 Example 9-18 和 Example A-2.
+    注意: 当使用非交互脚本时,可以使用 mv 的-f (强制) 选项来避免用户的输入.
+    当一个目录被移动到一个已存在的目录时,那么它将成为目标目录的子目录.
+
+    bash$ mv source_directory target_directory
+
+    bash$ ls -lF target_directory
+
+    total 1
+
+    drwxrwxr-x
+
+    2 bozo bozo
+
+    1024 May 28 19:20 source_directory/
+
+
+    rm
+
+       删除(清除)一个或多个文件. -f 选项将强制删除文件,
+       即使这个文件是只读的.并且可以 用来避免用户输入(在非交互脚本中使用).
+
+       注意: rm 将无法删除以破折号开头的文件.
+       
+       bash$ rm -badname
+       rm: invalid option -- b
+       Try rm --help for more information.
+
+       解决这个问题的一个方法就是在要删除的文件的前边加上"./".
+
+       bash$ rm ./-badname
+       另一种解决的方法是 在文件名前边加上 " -- ".
+       bash$ rm -- -badname
+
+       注意: 当使用递归参数 -r 时, rm 命令将会删除整个目录树. 
+       如果不慎使用 rm -rf *那整个目录树就真的完了.
+
+    rmdir
+         删除目录. 但是只有这个目录中没有文件 -- 当然会包含不可见的
+         . 点文件时候这个命令才会成功
+
+    mkdir
+
+        生成目录, 创建一个空目录. 比如, mkdir -p project/programs/December
+        将会创建出 这个指定的目录, 即使 project 目录和 programs 目录都不存在
+        -p 选项将会自动产生必要 的父目录, 这样也就同时创建了多个目录.
+    chmod
+        修改一个现存文件的属性 (见 Example 11-12).
+        
+	chmod +x filename
+          使得文件 filename 对所有用户都可执行.
+        
+        
+        chmod u+s filename
+
+          设置"filename"文件的"suid"位.
+          这样一般用户就可以执行"filename", 他将拥有和文件宿主相同的权限.
+          (这并不适用于 shell 脚本)
+        
+        
+        
+        
+        chmod 644 filename
+             Makes "filename" readable/writable to owner, readable to
+             设置文件宿主的 r/w 权限,并对一般用户
+             设置读权限.
+             (8 进制模式).
+        
+        
+        
+        
+        
+        chmod 1777 directory-name
+              对这个目录设置 r/w 和可执行权限, 并开放给所有人.
+              同时设置 "粘贴位".
+              这意味着, 只有目录宿主,
+              文件宿主, 当然, 还有 root
+              可以删除这个目录中的任何特定的文件.
+ 
+   
+    chattr
+
+          修改文件属性. 这个命令与上边的 chmod 命令相类似, 
+	  但是有不同的选项和不同的调用语 法, 并且这个命令
+	  只能工作在 ext2 文件系统中.
+
+    chattr 命令的一个特别有趣的选项是 
+
+          i.
+          chattr +i filename 将使得这个文件被标记为 永远不变. 这个文件将
+          不能被修改, 连接, 或删除, 即使是 root 也不行.
+          这个文件属性只 能被 root 设置和删除.
+
+          a
+	  选项将会把文件标记为只能追加数据.
+
+
+          root# chattr +i file1.txt
+          root# rm file1.txt
+          rm: remove write-protected regular file file1.txt? y
+          rm: cannot remove  file1.txt: Operation not permitted
+
+         如果文件设置了 s(安全)属性, 那么当这个文件被删除时,
+	 这个文件所在磁盘的块将全部被 0 填充.
+
+         如果文件设置了 u(不可删除)属性, 那么当这个文件被删除后, 
+	 这个文件的内容还可以被恢复(不可删除).
+
+         如果文件设置了 c(压缩)属性, 那么当这个文件在进行写操作时,
+	 它将自动被压缩,并且在 读的时候, 自动解压.
+
+         注意: 使用命令 chattr do 设置的属性, 将不会显示在文件列表中(ls -l).
+
+   ln  
+
+      见 E-12-2
+  \033[0m"
