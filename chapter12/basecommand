@@ -187,4 +187,37 @@
    ln  
 
       见 E-12-2
+
+   vdir
+      
+      显示详细的目录列表. 与 ls -l 的效果类似.
+      这是一个 GNU fileutils.
+
+   locate, slocate
+
+      locate 命令将会在预先建立好的档案数据库中查询文件. slocate 命令是 locate 的安全版本( locate 命令可能已经被关联到 slocate 命令上了).
+    
+      locate hickson
+      /usr/lib/xephem/catalogs/hickson.edb
+
+  readlink
+      
+      显示符号连接所指向的文件.
+
+  strings
+
+     使用 strings 命令在二进制或数据文件中找出可打印字符.
+     它将在目标文件中列出所有找到的可打印字符的序列. 这个命
+     令对于想进行快速查找一个 n 个字符的打印检查来说是很
+     方便的,也可以用来检查一个未知格式的图片文件 
+     (strings image-file | more 可能会搜索出像 JFIF 这样的字符串,
+      那么这就意味着这个文件是一个 jpeg 格式的图片文件).
+      在脚本中, 你可能会使用 grep 或 sed 命令来分析 strings 命令的输出. 
+      
+   参见
+       Example 10-7 和 Example 10-9
+
+  
+
+
   \033[0m"
