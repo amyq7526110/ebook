@@ -1,0 +1,26 @@
+Logfile2018年 11月 23日 星期五 18:29:42 CST
+----------------------------------
+
+Output of "ls -al" command 
+
+总用量 32
+drwxr-xr-x  2 root root 4096 11月 23 18:29 .
+drwxr-xr-x 18 root root 4096 11月 23 14:23 ..
+-rw-r--r--  1 root root 1217 11月 23 17:44 16_1_exec.sh
+-rw-r--r--  1 root root  739 11月 23 18:29 16_2_execout.sh
+-rw-r--r--  1 root root   24 11月 23 17:33 data.list
+-rw-r--r--  1 root root 5925 11月 23 17:32 i_o_redirect.sh
+-rw-r--r--  1 root root  115 11月 23 18:29 logfile.txt
+
+
+Output of "df" command
+
+文件系统           1K-块     已用      可用 已用% 挂载点
+/dev/sda2      123723328 57544872  59870616   50% /
+devtmpfs         8065232        0   8065232    0% /dev
+tmpfs            8080048   130700   7949348    2% /dev/shm
+tmpfs            8080048     9208   8070840    1% /run
+tmpfs            8080048        0   8080048    0% /sys/fs/cgroup
+/dev/sda1      206292968 79067260 116723564   41% /var/lib/libvirt/images
+/dev/loop0       3963760  3963760         0  100% /var/ftp/rhel7
+tmpfs            1616012       44   1615968    1% /run/user/0
